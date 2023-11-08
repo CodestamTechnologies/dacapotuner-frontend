@@ -29,24 +29,26 @@ export default function Homepage() {
         <section className="h-screen">
             <div className="flex justify-between items-center py-4 font-sans" >
                 <h1 className="text-4xl font-black">Dacapo</h1>
-                <button className="text-lg px-4 py-1.5 font-bold bg-[#CB5CFF] text-white rounded-xl border-2 hover:ring hover:ring-purple-200 duration-300">Contact Us</button>
+                <button className="text-lg px-4 py-1.5 font-bold bg-[#CB5CFF] text-white rounded-xl border-2 hover:ring hover:ring-purple-200 duration-300">
+                    <a href="mailto:tbeliveau@dcapo.co">Contact Us</a>
+                </button>
             </div>
             <div className="flex justify-between items-center ">
                 <div className="lg:w-1/2 py-24">
-                    <h2 className={`${luckyGuy.className} text-6xl lg:text-8xl font-black`}>MUSIC <br /> REDEFINED</h2>
-                    <p className=" text-base lg:text-2xl font-sans py-8 font-medium tracking-wider">DaCapo is the first vetted and gamified AI music education platform designed to connect young musicians based on their abilities, while also endeavouring to better prepare them on their instruments within a band setting.</p>
+                    <h2 className={`${luckyGuy.className} text-7xl lg:text-8xl font-black`}>MUSIC <br /> REDEFINED</h2>
+                    <p className=" text-xl lg:text-2xl font-sans py-8 font-medium tracking-wider">DaCapo is the first vetted and gamified AI music education platform designed to connect young musicians based on their abilities, while also endeavouring to better prepare them on their instruments within a band setting.</p>
                     <Button text={'Start Vetting Process'} />
                 </div>
                 <div className="hidden lg:flex flex-col justify-center items-center space-y-8">
                     <div className="flex ">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone"  />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
                     </div>
                     <div className="flex space-x-8">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone"  />
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone"  />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
                     </div>
                     <div className="flex ">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone"  />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
                     </div>
                 </div>
             </div>
