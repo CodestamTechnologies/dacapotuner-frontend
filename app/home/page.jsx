@@ -1,4 +1,4 @@
-import WeatherCard from '@/components/WeatherCard'
+import WeatherCard from '@/components/ProjectCard'
 import Navbar from '@/components/Navbar'
 import React from 'react'
 

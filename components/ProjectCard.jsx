@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '@/styles/WeatherCard.module.css'
+import styles from '@/styles/ProjectCard.module.css'
 
 
-const WeatherCard = ({ project }) => {
+const ProjectCard = ({ project }) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
@@ -27,4 +27,4 @@ const WeatherCard = ({ project }) => {
   );
 };
 
-export default WeatherCard;
+export default ProjectCard;
