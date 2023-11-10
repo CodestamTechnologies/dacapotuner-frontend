@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <div>
             <div className="flex justify-between items-center py-4 font-sans" >
-                <div className='flex '>
+                <div className='flex items-center justify-center'>
                     <Image src={'/dacapoLogo.jpeg'} width={50} height={50} alt='Dacapo Logo' className='rounded-full mr-2'/>
                     <h1 className="text-4xl font-black">Dacapo</h1>
                 </div>
