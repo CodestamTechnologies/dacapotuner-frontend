@@ -31,23 +31,23 @@ export default function Homepage() {
         <section className="h-screen">
             <Navbar />
             <div className="flex justify-between items-center ">
-                <div className="lg:w-1/2 py-24">
-                    <h2 className={`${luckyGuy.className} text-7xl lg:text-8xl font-black`}>MUSIC <br /> REDEFINED</h2>
+                <div className="flex flex-col justify-between lg:w-1/2 py-24 md:py-0 ">
+                    <h2 className={`${luckyGuy.className} bg-[url(/gifs/textBgHome.gif)] text-transparent bg-clip-text text-7xl md:text-8xl lg:text-9xl font-black`}>MUSIC <br /> REDEFINED</h2>
                     <p className=" text-xl lg:text-2xl font-sans py-8 font-medium tracking-wider">DaCapo is the first vetted and gamified AI music education platform designed to connect young musicians based on their abilities, while also endeavouring to better prepare them on their instruments within a band setting.</p>
-                    <Link href={'/home'}>
+                    <Link href={'/home'} className="w-fit">
                         <Button text={'Start Vetting Process'} />
                     </Link>
                 </div>
                 <div className="hidden lg:flex flex-col justify-center items-center space-y-8">
                     <div className="flex ">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/gifs/Sound - Animated Icon.gif'} width={300} height={300} alt="headPhone" />
                     </div>
                     <div className="flex space-x-8">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
+                        <Image className='aspect-video object-cover rounded-lg ' src={'/gifs/Audio Mix.gif'} width={300} height={300} alt="headPhone" />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/gifs/Search Projects.gif'} width={300} height={300} alt="headPhone" />
                     </div>
                     <div className="flex ">
-                        <Image className='aspect-video object-cover rounded-lg' src={'/headPhone.jpg'} width={300} height={300} alt="headPhone" />
+                        <Image className='aspect-video object-cover rounded-lg' src={'/gifs/Coffee Stain Preloader.gif'} width={300} height={300} alt="headPhone" />
                     </div>
                 </div>
             </div>
