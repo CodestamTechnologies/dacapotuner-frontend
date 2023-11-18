@@ -6,7 +6,7 @@ const projects = [
   {
     name: 'Monophonic Tuner',
     description: 'A monophonic tuner application that helps musicians tune their instruments accurately. It provides real-time feedback on the pitch of a single note, ensuring precision in tuning.',
-    link: 'https://dacapotuner.vercel.app/',
+    link: '/monophonic-tuner',
   },
   {
     name: 'Chord Recognition',
@@ -24,7 +24,6 @@ const projects = [
 const page = () => {
   return (
     <div>
-      <Navbar />
       <div className='flex flex-wrap items-center justify-evenly gap-8 my-24'>
         {
           projects.map((project, i) => {

@@ -29,7 +29,7 @@ const Button = ({ text }) => {
 export default function Homepage() {
     return (
         <section className="h-screen">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="flex justify-between items-center ">
                 <div className="flex flex-col justify-between lg:w-1/2 py-24 md:py-0 ">
                     <h2 className={`${luckyGuy.className} bg-[url(/gifs/textBgHome.gif)] text-transparent bg-clip-text text-7xl md:text-8xl lg:text-9xl font-black`}>MUSIC <br /> REDEFINED</h2>
