@@ -82,10 +82,10 @@ const Page = () => {
       newTuner.onNoteDetected = (note) => {
 
         // If audio not is in between 65 to 95, do nothing 
-        if (note.decibel < 65 || note.decibel > 95) {
-          console.log(note);
-          return
-        }
+        // if (note.decibel < 65 || note.decibel > 95) {
+        //   console.log(note);
+        //   return
+        // }
 
         
         // Check for winning
