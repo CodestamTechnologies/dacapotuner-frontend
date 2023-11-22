@@ -221,7 +221,7 @@ const Page = () => {
     <div className='h-screen flex flex-col justify-evenly items-center py-8 md:py-18 text-3xl md:text-5xl'>
       <Script src='https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js' />
       <p>Level : <Highlight text={`#${currIndex + 1}`} /></p>
-      <p>Target Note: <Highlight text={targetNote} fontSize={'6rem'} /></p>
+      <p>Target Note: <Highlight text={targetNote} fontSize={'7rem'} /></p>
       <p>Score: <Highlight text={score} /></p>
     </div>
   );
