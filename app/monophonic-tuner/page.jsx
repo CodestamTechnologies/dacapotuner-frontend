@@ -89,7 +89,7 @@ const Page = () => {
         //   return
         // }
 
-
+        console.log(note.name, targetNote);
         // Check for winning
         if (note.name === targetNote) {
           setWon(true)
@@ -101,7 +101,7 @@ const Page = () => {
         setTimeTaken(parseFloat(((new Date() - startTime) / 1000).toFixed(2)))
 
         setResult((prev) => [...prev, { targetNote: chromaticNotes[currIndex], playedNote: note.name, timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)), won: note.name === targetNote }])
-        
+
         // Store the audio in database
         newTuner.stop().then((blob) => {
           uploadAudio(blob, (new Date().toISOString().replace(/[-:.]/g, '')))
@@ -191,7 +191,7 @@ const Page = () => {
         }, loadingTime);
       }
     }
-  }, [currIndex]);
+  }, [currIndex, targetNote]);
 
 
 
