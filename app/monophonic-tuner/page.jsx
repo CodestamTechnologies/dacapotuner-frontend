@@ -40,6 +40,8 @@ const uploadAudio = async (blob, fileName = "defaultFileName") => {
 };
 
 
+const timeGivenToPlay = 30000
+const loadingTime = 3000
 
 const Page = () => {
   // State variables
@@ -81,13 +83,13 @@ const Page = () => {
       let startGameTimeout;
       newTuner.onNoteDetected = (note) => {
 
-        // If audio not is in between 65 to 95, do nothing 
+        // // If audio not is in between 65 to 95, do nothing 
         // if (note.decibel < 65 || note.decibel > 95) {
         //   console.log(note);
         //   return
         // }
 
-        
+
         // Check for winning
         if (note.name === targetNote) {
           setWon(true)
@@ -99,7 +101,8 @@ const Page = () => {
         setTimeTaken(parseFloat(((new Date() - startTime) / 1000).toFixed(2)))
 
         setResult((prev) => [...prev, { targetNote: chromaticNotes[currIndex], playedNote: note.name, timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)), won: note.name === targetNote }])
-
+        
+        // Store the audio in database
         newTuner.stop().then((blob) => {
           uploadAudio(blob, (new Date().toISOString().replace(/[-:.]/g, '')))
         }).catch(err => console.log(err))
@@ -110,15 +113,18 @@ const Page = () => {
       };
 
       startGameTimeout = setTimeout(() => {
+        // Store the audio in database
         newTuner.stop().then((blob) => {
           uploadAudio(blob, (new Date().toISOString().replace(/[-:.]/g, '')))
         }).catch(err => console.log(err))
+
+
         setTuner(null);
         setWon(false)
         setCurrIndex((curr) => curr + 1);
         setResult((prev) => [...prev, { targetNote: chromaticNotes[currIndex], playedNote: 'Null', timeTaken: 5.00, won: false }])
         setTimeTaken(parseFloat(((5000) / 1000).toFixed(2)))
-      }, 5000);
+      }, timeGivenToPlay);
       setTuner(newTuner); // Store the tuner instance in state
     } catch (error) {
       window.alert('Something went wrong');
@@ -126,7 +132,7 @@ const Page = () => {
     }
   };
 
-  
+
 
 
 
@@ -152,7 +158,7 @@ const Page = () => {
               setIsLoading(false);
               startListening();
             }
-          }, 3000); // Show the "Loading"  for 3 seconds
+          }, loadingTime); // Show the "Loading"  for 3 seconds
         });
 
       } else if (currIndex === chromaticNotes.length) {
@@ -182,7 +188,7 @@ const Page = () => {
             setIsLoading(false);
             startListening();
           }
-        }, 3000);
+        }, loadingTime);
       }
     }
   }, [currIndex]);
@@ -203,7 +209,7 @@ const Page = () => {
   if (isLoading) {
     return (
       <div>
-        <Countdown won={won} currentIndex={currIndex} timeTaken={timeTaken} />
+        <Countdown won={won} currentIndex={currIndex} timeTaken={timeTaken} loadingTime={loadingTime} />
       </div>
     );
   }
@@ -215,7 +221,7 @@ const Page = () => {
     <div className='h-screen flex flex-col justify-evenly items-center py-8 md:py-18 text-3xl md:text-5xl'>
       <Script src='https://cdn.jsdelivr.net/npm/aubiojs@0.1.1/build/aubio.min.js' />
       <p>Level : <Highlight text={`#${currIndex + 1}`} /></p>
-      <p>Target Note: <Highlight text={targetNote} /></p>
+      <p>Target Note: <Highlight text={targetNote} fontSize={'6rem'} /></p>
       <p>Score: <Highlight text={score} /></p>
     </div>
   );

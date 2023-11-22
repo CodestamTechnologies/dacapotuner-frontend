@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Highlight from './Highlight';
 
-function Countdown({ won, currentIndex, timeTaken }) {
-  const [count, setCount] = useState(3); // Set the initial countdown value
+function Countdown({ won, currentIndex, timeTaken, loadingTime }) {
+  const [count, setCount] = useState(loadingTime / 1000); // Set the initial countdown value
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
@@ -18,6 +18,7 @@ function Countdown({ won, currentIndex, timeTaken }) {
     };
   }, [count]);
 
+
   return (
     <div className='flex justify-center items-center  h-screen '>
       <div className='flex flex-col space-y-12 justify-center items-center'>
@@ -31,7 +32,7 @@ function Countdown({ won, currentIndex, timeTaken }) {
                 </span>
                 Note
               </span>
-              <span>Time Taken  : <Highlight text={timeTaken + 'ms'}/></span>
+              <span>Time Taken  : <Highlight text={timeTaken + 's'} /></span>
             </div>)
             : ''}
         </div>

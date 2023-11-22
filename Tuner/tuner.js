@@ -282,6 +282,8 @@ Tuner.prototype.stopStream = function () {
         .forEach(track /*of type MediaStreamTrack*/ => track.stop()); //stop each one
 };
 
+
+
 Tuner.prototype.resetRecordingProperties = function () {
     this.mediaRecorder = null;
     this.streamBeingCaptured = null;
