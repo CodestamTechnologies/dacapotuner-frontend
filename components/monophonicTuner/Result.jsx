@@ -10,12 +10,12 @@ const Result = ({ list, score, resetGame }) => {
         const pdf = new jsPDF();
 
         html2canvas(input, {
-            scale: 0.81,
+            scale: 0.75,
         })
             .then((canvas) => {
                 const imgData = canvas.toDataURL('image/png');
                 pdf.addImage(imgData, 'JPEG', 0, 0);
-                pdf.save(`downloadFileName.pdf`);
+                pdf.save(new Date().toLocaleString());
             });
     };
 
@@ -49,8 +49,14 @@ const Result = ({ list, score, resetGame }) => {
                         <th scope="col" className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                             Target Note
                         </th>
+                        {/* <th scope="col" className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            Required Freq
+                        </th> */}
                         <th scope="col" className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                             Played Note
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            Played Freq
                         </th>
                         <th scope="col" className="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                             Time Taken
@@ -70,8 +76,14 @@ const Result = ({ list, score, resetGame }) => {
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {item['targetNote']}
                                 </th>
+                                {/* <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {item['requiredFreq']}
+                                </th> */}
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {item['playedNote']}
+                                </th>
+                                <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {item['playedFreq']}
                                 </th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {item['timeTaken']}
@@ -84,7 +96,7 @@ const Result = ({ list, score, resetGame }) => {
                         ))
                     }
                     <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-white'>
-                        <th className="px-6 py-4 text-3xl font-medium text-gray-900 whitespace-nowrap  text-right dark:text-white" colSpan={4}>Total Score:</th>
+                        <th className="px-6 py-4 text-3xl font-medium text-gray-900 whitespace-nowrap  text-right dark:text-white" colSpan={5}>Total Score:</th>
                         <th className="px-6 py-4 text-3xl font-medium   text-gray-900 whitespace-nowrap dark:text-white" colSpan={1}><span className='px-4 py-2 bg-slate-400 text-black rounded-lg font-bold'>{score || 0}</span></th>
                     </tr>
                 </tbody>

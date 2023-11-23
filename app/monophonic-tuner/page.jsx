@@ -89,7 +89,7 @@ const Page = () => {
         //   return
         // }
 
-        console.log(note.name, targetNote);
+
         // Check for winning
         if (note.name === targetNote) {
           setWon(true)
@@ -98,9 +98,21 @@ const Page = () => {
           setWon(false)
         }
 
+
         setTimeTaken(parseFloat(((new Date() - startTime) / 1000).toFixed(2)))
 
-        setResult((prev) => [...prev, { targetNote: chromaticNotes[currIndex], playedNote: note.name, timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)), won: note.name === targetNote }])
+        setResult((prev) => [...prev,
+        {
+          targetNote: chromaticNotes[currIndex],
+          playedNote: note.name,
+          timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)),
+          won: note.name === targetNote,
+          // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
+          playedFreq: note.frequency.toFixed(2)
+        }
+        ])
+
+        console.log(result);
 
         // Store the audio in database
         newTuner.stop().then((blob) => {
@@ -122,7 +134,15 @@ const Page = () => {
         setTuner(null);
         setWon(false)
         setCurrIndex((curr) => curr + 1);
-        setResult((prev) => [...prev, { targetNote: chromaticNotes[currIndex], playedNote: 'Null', timeTaken: 5.00, won: false }])
+        setResult((prev) => [...prev,
+        {
+          targetNote: chromaticNotes[currIndex],
+          playedNote: 'Null',
+          timeTaken: 5.00,
+          won: false,
+          // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
+          playedFreq: note.frequency.toFixed(2)
+        }])
         setTimeTaken(parseFloat(((5000) / 1000).toFixed(2)))
       }, timeGivenToPlay);
       setTuner(newTuner); // Store the tuner instance in state

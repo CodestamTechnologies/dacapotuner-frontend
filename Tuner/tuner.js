@@ -62,10 +62,6 @@ Tuner.prototype.initGetUserMedia = function () {
 };
 
 
-let offset = 0;
-
-
-
 
 
 Tuner.prototype.startRecord = function () {
@@ -90,11 +86,6 @@ Tuner.prototype.startRecord = function () {
             })
 
             self.mediaRecorder.start()
-            // self.audioRecorder.start().then(() => {
-            //     console.log('recording Staretd ...');
-            // }).catch((e) => {
-            //     console.log(e);
-            // })
 
             self.audioContext.createMediaStreamSource(stream).connect(self.analyser);
             self.analyser.connect(self.scriptProcessor);
