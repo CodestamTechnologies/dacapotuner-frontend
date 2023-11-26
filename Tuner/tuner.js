@@ -6,16 +6,16 @@ const Tuner = function (a4) {
     this.bufferSize = 4096;
     this.noteStrings = [
         "C",
-        "C♯",
+        "C♯/D♭",
         "D",
-        "D♯",
+        "D♯/E♭",
         "E",
         "F",
-        "F♯",
+        "F♯/G♭",
         "G",
-        "G♯",
+        "G♯/A♭",
         "A",
-        "A♯",
+        "A♯/b♭",
         "B",
     ];
 

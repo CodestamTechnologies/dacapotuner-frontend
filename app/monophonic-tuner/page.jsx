@@ -91,7 +91,7 @@ const Page = () => {
 
 
         // Check for winning
-        if (note.name === targetNote) {
+        if (note.name.split('/').includes(targetNote)) {
           setWon(true)
           setScore((prevScore) => prevScore + 1); // Increment the score on correct note
         } else {
@@ -106,7 +106,7 @@ const Page = () => {
           targetNote: chromaticNotes[currIndex],
           playedNote: note.name,
           timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)),
-          won: note.name === targetNote,
+          won: note.name.split('/').includes(targetNote),
           // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
           playedFreq: note.frequency.toFixed(2)
         }
