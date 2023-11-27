@@ -15,7 +15,7 @@ const chromaticNotesDefault = [
     "A♭",
     "A",
     "A♯",
-    "b♭",
+    "B♭",
     "B",
 ]
 

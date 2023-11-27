@@ -15,7 +15,7 @@ const Tuner = function (a4) {
         "G",
         "G♯/A♭",
         "A",
-        "A♯/b♭",
+        "A♯/B♭",
         "B",
     ];
 
