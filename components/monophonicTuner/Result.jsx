@@ -86,7 +86,7 @@ const Result = ({ list, score, resetGame }) => {
                                     {item['playedFreq']} Hz
                                 </th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {item['timeTaken']} s
+                                    {item['timeTaken']} ms
                                 </th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {item['won'] ? (<span className='bg-green-100 text-green-800 px-4 py-1 font-semibold'>Won</span>)

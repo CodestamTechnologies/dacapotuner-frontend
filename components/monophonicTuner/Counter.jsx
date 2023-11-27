@@ -32,7 +32,7 @@ function Countdown({ won, currentIndex, timeTaken, loadingTime }) {
                 </span>
                 Note
               </span>
-              <span>Time Taken  : <Highlight text={timeTaken + 's'} /></span>
+              <span>Time Taken  : <Highlight text={timeTaken + 'ms'} /></span>
             </div>)
             : ''}
         </div>

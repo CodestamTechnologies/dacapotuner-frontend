@@ -99,13 +99,13 @@ const Page = () => {
         }
 
 
-        setTimeTaken(parseFloat(((new Date() - startTime) / 1000).toFixed(2)))
+        setTimeTaken(new Date() - startTime)
 
         setResult((prev) => [...prev,
         {
           targetNote: chromaticNotes[currIndex],
           playedNote: note.name,
-          timeTaken: parseFloat(((new Date() - startTime) / 1000).toFixed(2)),
+          timeTaken: new Date() - startTime,
           won: note.name.split('/').includes(targetNote),
           // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
           playedFreq: note.frequency.toFixed(2)
@@ -138,12 +138,12 @@ const Page = () => {
         {
           targetNote: chromaticNotes[currIndex],
           playedNote: 'Null',
-          timeTaken: 5.00,
+          timeTaken: timeGivenToPlay,
           won: false,
           // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
           playedFreq: note.frequency.toFixed(2)
         }])
-        setTimeTaken(parseFloat(((5000) / 1000).toFixed(2)))
+        setTimeTaken(timeGivenToPlay)
       }, timeGivenToPlay);
       setTuner(newTuner); // Store the tuner instance in state
     } catch (error) {
