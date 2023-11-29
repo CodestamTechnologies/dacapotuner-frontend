@@ -72,57 +72,95 @@ const Page = () => {
     setScore(0);
   }
 
+  function findMostRepeatedItem(array) {
+    const frequencyMap = array.reduce((map, item) => {
+      map.set(item, (map.get(item) || 0) + 1);
+      return map;
+    }, new Map());
+
+    // Find the item with the maximum frequency
+    const mostRepeatedItem = [...frequencyMap.entries()].reduce(
+      (max, entry) => (entry[1] > max[1] ? entry : max),
+      [null, 0]
+    )[0];
+
+    return mostRepeatedItem;
+  }
+
+
+  function processAudio(note, startTime, newTuner) {
+    // Check for winning
+    if (note.name.split('/').includes(targetNote)) {
+      setWon(true)
+      setScore((prevScore) => prevScore + 1); // Increment the score on correct note
+    } else {
+      setWon(false)
+    }
+
+
+    setTimeTaken(new Date() - startTime)
+
+    setResult((prev) => [...prev,
+    {
+      targetNote: chromaticNotes[currIndex],
+      playedNote: note.name,
+      timeTaken: new Date() - startTime,
+      won: note.name.split('/').includes(targetNote),
+      // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
+      playedFreq: note.frequency.toFixed(2)
+    }
+    ])
+
+    console.log(result);
+
+    // Store the audio in database
+    newTuner.stop().then((blob) => {
+      uploadAudio(blob, (new Date().toISOString().replace(/[-:.]/g, '')))
+    }).catch(err => console.log(err))
+
+    setTuner(null);
+    setCurrIndex((curr) => curr + 1);
+  }
+
+
 
 
   // Function to start listening to the user's note input
   const startListening = () => {
+    let startTime;
+    let startGameTimeout;
+    let twoSecondTimer;
+    let mostRepeatedNote;
+    const detectedNotesArray = []
     try {
-      let startTime = new Date();
+      startTime = new Date();
       const newTuner = new Tuner(a4);
       newTuner.init();
-      let startGameTimeout;
+
       newTuner.onNoteDetected = (note) => {
-
-        // // If audio not is in between 65 to 95, do nothing 
-        // if (note.decibel < 65 || note.decibel > 95) {
-        //   console.log(note);
-        //   return
-        // }
+        clearTimeout(twoSecondTimer)
+        detectedNotesArray.push(note)
+        console.log(note);
 
 
-        // Check for winning
-        if (note.name.split('/').includes(targetNote)) {
-          setWon(true)
-          setScore((prevScore) => prevScore + 1); // Increment the score on correct note
-        } else {
-          setWon(false)
+        if (detectedNotesArray.length >= 10) {
+          mostRepeatedNote = findMostRepeatedItem(detectedNotesArray)
+          processAudio(note, startTime, newTuner)
+          detectedNotesArray.length = 0
+          clearTimeout(twoSecondTimer)
+          clearTimeout(startGameTimeout);
+          return
         }
 
-
-        setTimeTaken(new Date() - startTime)
-
-        setResult((prev) => [...prev,
-        {
-          targetNote: chromaticNotes[currIndex],
-          playedNote: note.name,
-          timeTaken: new Date() - startTime,
-          won: note.name.split('/').includes(targetNote),
-          // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
-          playedFreq: note.frequency.toFixed(2)
-        }
-        ])
-
-        console.log(result);
-
-        // Store the audio in database
-        newTuner.stop().then((blob) => {
-          uploadAudio(blob, (new Date().toISOString().replace(/[-:.]/g, '')))
-        }).catch(err => console.log(err))
-
-        setTuner(null);
-        setCurrIndex((curr) => curr + 1);
-        clearInterval(startGameTimeout);
+        twoSecondTimer = setTimeout(() => {
+          mostRepeatedNote = findMostRepeatedItem(detectedNotesArray)
+          processAudio(note, startTime, newTuner)
+          detectedNotesArray.length = 0
+          clearTimeout(startGameTimeout);
+        }, 2000);
       };
+
+
 
       startGameTimeout = setTimeout(() => {
         // Store the audio in database
@@ -141,7 +179,7 @@ const Page = () => {
           timeTaken: timeGivenToPlay,
           won: false,
           // requiredFreq: newTuner.getStandardFrequency(newTuner.noteStrings.indexOf(targetNote)),
-          playedFreq: note.frequency.toFixed(2)
+          playedFreq: 0
         }])
         setTimeTaken(timeGivenToPlay)
       }, timeGivenToPlay);
