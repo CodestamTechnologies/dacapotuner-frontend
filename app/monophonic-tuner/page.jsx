@@ -129,7 +129,7 @@ const Page = () => {
   const startListening = () => {
     let startTime;
     let startGameTimeout;
-    let twoSecondTimer;
+    let oneSecondTimer; //It has been changed to one second
     let mostRepeatedNote;
     const detectedNotesArray = []
     try {
@@ -138,7 +138,7 @@ const Page = () => {
       newTuner.init();
 
       newTuner.onNoteDetected = (note) => {
-        clearTimeout(twoSecondTimer)
+        clearTimeout(oneSecondTimer)
         detectedNotesArray.push(note)
         console.log(note);
 
@@ -147,17 +147,17 @@ const Page = () => {
           mostRepeatedNote = findMostRepeatedItem(detectedNotesArray)
           processAudio(note, startTime, newTuner)
           detectedNotesArray.length = 0
-          clearTimeout(twoSecondTimer)
+          clearTimeout(oneSecondTimer)
           clearTimeout(startGameTimeout);
           return
         }
 
-        twoSecondTimer = setTimeout(() => {
+        oneSecondTimer = setTimeout(() => {
           mostRepeatedNote = findMostRepeatedItem(detectedNotesArray)
           processAudio(note, startTime, newTuner)
           detectedNotesArray.length = 0
           clearTimeout(startGameTimeout);
-        }, 2000);
+        }, 1000);
       };
 
 
