@@ -34,9 +34,9 @@ export default function Homepage() {
                 <div className="flex flex-col justify-between lg:w-1/2 py-24 md:py-0 ">
                     <h2 className={`${luckyGuy.className} bg-[url(/gifs/textBgHome.gif)] text-transparent bg-clip-text text-7xl md:text-8xl lg:text-9xl font-black`}>MUSIC <br /> REDEFINED</h2>
                     <p className=" text-xl lg:text-2xl font-sans py-8 font-medium tracking-wider">DaCapo is the first vetted and gamified AI music education platform designed to connect young musicians based on their abilities, while also endeavouring to better prepare them on their instruments within a band setting.</p>
-                    <Link href={'/home'} className="w-fit">
+                    {/* <Link href={'/home'} className="w-fit">
                         <Button text={'Start Vetting Process'} />
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className="hidden lg:flex flex-col justify-center items-center space-y-8">
                     <div className="flex ">
